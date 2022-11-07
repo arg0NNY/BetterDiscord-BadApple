@@ -1,0 +1,2 @@
+# BetterDiscord-BadApple
+ BadApple!!
