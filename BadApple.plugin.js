@@ -49,18 +49,18 @@ module.exports = (() => {
         }
 
         async startVideo() {
-            this.canStop = false;
+            this.controlDisabled = true;
             await this.takeScreenshots();
             this.initializeCanvas();
             this.playVideo();
-            this.canStop = true;
+            this.controlDisabled = false;
         }
 
         listenHotkey() {
             this.hotkeyHandler = e => {
-                if (e.key !== 'F7') return;
+                if (e.key !== 'F7' || this.controlDisabled) return;
 
-                if (this.video && this.canStop) this.stopVideo();
+                if (this.video) this.stopVideo();
                 else this.startVideo();
             };
             document.addEventListener('keydown', this.hotkeyHandler);
